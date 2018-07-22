@@ -4,23 +4,23 @@ var ctx = csv.getContext("2d");
 
 // images
 
-var bird = new Image();
+var car = new Image();
 var bg = new Image();
 var fg = new Image();
 var pipeUp = new Image();
 var pipeDown = new Image();
 
-bird.src = "flappyBird/images/bird.png";
-bg.src = "flappyBird/images/bg.png";
-fg.src = "flappyBird/images/fg.png";
-pipeUp.src = "flappyBird/images/pipeNorth.png";
-pipeDown.src = "flappyBird/images/pipeSouth.png";
+car.src = "images/car.png";
+bg.src = "images/bg";
+fg.src = "images/fg";
+pipeUp.src = "images/pipeNorth";
+pipeDown.src = "images/pipeSouth";
 
 var gap = 120;
 var constant = pipeUp.height+gap;
 
-var birdX = 10;
-var birdY = 150;
+var carX = 10;
+var carY = 150;
 
 var score = 0;
 
@@ -38,7 +38,7 @@ scor.src = "flappyBird/sounds/score.mp3"
 document.addEventListener("keydown",moveUp);
 
 function moveUp(){
-	birdY -= 28;
+	carY -= 28;
 	fly.play();
 }
 
@@ -72,10 +72,10 @@ function draw(){
 		}
 
 		// collision
-		if(birdX + bird.width >= pipe[i].x && 
-			birdX <= pipe[i].x + pipeUp.width && 
-			(birdY <= pipe[i].y + pipeUp.height || 
-			birdY+bird.height >= pipe[i].y+constant) || birdY + bird.height >= csv.height - fg.height){
+		if(carX + car.width >= pipe[i].x && 
+			carX <= pipe[i].x + pipeUp.width && 
+			(carY <= pipe[i].y + pipeUp.height || 
+			carY+car.height >= pipe[i].y+constant) || carY + car.height >= csv.height - fg.height){
 			location.reload();
 		}
 
@@ -86,13 +86,13 @@ function draw(){
 
 	}
 
-	ctx.drawImage(fg,0,csv.height - fg.height);
+	//ctx.drawImage(fg,0,csv.height - fg.height);
 
-	ctx.drawImage(bird,birdX,birdY);
+	ctx.drawImage(car,carX,carY);
 
-	birdY += gravity ;
+	carY += gravity ;
 
-	ctx.fillStyle = "#000";
+	ctx.fillStyle = "#777";
 	ctx.font = "20px Verdana";
 	ctx.fillText("Score : "+score,10,csv.height-20);
 
